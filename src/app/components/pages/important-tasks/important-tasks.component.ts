@@ -21,12 +21,10 @@ export class ImportantTasksComponent {
   getAllTasks(){
     this.httpService.getAllTasks().subscribe((result:any)=>{
       this.taskList=result.filter((x:any)=>x.important==true);
-      console.log(this.taskList)
     })
   }
   onComplete(task:any){
     task.completed=true;
-    console.log("complete",task)
     this.httpService.updateTask(task).subscribe(()=>{
       this.getAllTasks();
     })
@@ -39,7 +37,6 @@ export class ImportantTasksComponent {
   }
 
   onDelete(id: any){
-    console.log(id)
     this.httpService.deleteTask(id).subscribe(()=>{
       this.getAllTasks();
     });

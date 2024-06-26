@@ -24,7 +24,6 @@ export class CompletedTasksComponent {
   }
   onComplete(task:any){
     task.completed=true;
-    console.log("complete",task)
     this.httpService.updateTask(task).subscribe(()=>{
       this.getAllTasks();
     })
@@ -37,7 +36,6 @@ export class CompletedTasksComponent {
   }
 
   onDelete(id: any){
-    console.log(id)
     this.httpService.deleteTask(id).subscribe(()=>{
       this.getAllTasks();
     });

@@ -20,7 +20,7 @@ export class AllTaskComponent {
   stateService = inject(StateService);
   ngOnInit() {
     this.stateService.searchSubject.subscribe((value) => {
-      console.log("search",value)
+    
       if (value) {
         this.taskList = this.intialTaskList.filter((x) =>
           x.title.toLowerCase().includes(value.toLowerCase())
@@ -32,7 +32,6 @@ export class AllTaskComponent {
     this.getAllTasks();
   }
   addTask() {
-    console.log('addTask', this.newTask);
     this.httpService.addTask(this.newTask).subscribe(() => {
       this.newTask = '';
       this.getAllTasks();
@@ -46,7 +45,6 @@ export class AllTaskComponent {
   
   onComplete(task: any) {
     task.completed = true;
-    console.log('complete', task);
     this.httpService.updateTask(task).subscribe(() => {
       this.getAllTasks();
     });
@@ -59,7 +57,6 @@ export class AllTaskComponent {
   }
 
  onDelete(id: any){
-    console.log(id)
     this.httpService.deleteTask(id).subscribe(()=>{
       this.getAllTasks();
     });
