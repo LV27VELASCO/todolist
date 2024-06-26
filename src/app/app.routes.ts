@@ -16,4 +16,8 @@ export const routes: Routes = [
     path: 'completed',
     component: CompletedTasksComponent,
   },
+  {
+    path: 'grafica',
+    component: CompletedTasksComponent,
+  },
 ];

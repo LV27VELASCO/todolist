@@ -11,7 +11,6 @@ import { StateService } from '../../../services/state.service';
   standalone: true,
   imports: [FormsModule, DatePipe, PageTitleComponent, TaskListComponent],
   templateUrl: './all-task.component.html',
-  styleUrl: './all-task.component.scss',
 })
 export class AllTaskComponent {
   newTask = '';
@@ -44,6 +43,7 @@ export class AllTaskComponent {
       this.intialTaskList = this.taskList = result;
     });
   }
+  
   onComplete(task: any) {
     task.completed = true;
     console.log('complete', task);
@@ -54,6 +54,13 @@ export class AllTaskComponent {
   onImportant(task: any) {
     task.important = true;
     this.httpService.updateTask(task).subscribe(() => {
+      this.getAllTasks();
+    });
+  }
+
+ onDelete(id: any){
+    console.log(id)
+    this.httpService.deleteTask(id).subscribe(()=>{
       this.getAllTasks();
     });
   }

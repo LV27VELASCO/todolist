@@ -8,12 +8,12 @@ import { HttpService } from '../../../services/http.service';
   standalone: true,
   imports: [PageTitleComponent, TaskListComponent],
   templateUrl: './important-tasks.component.html',
-  styleUrl: './important-tasks.component.scss',
 })
 export class ImportantTasksComponent {
   newTask="";
   taskList:any[]=[];
   httpService=inject(HttpService);
+  
 
   ngOnInit(){
     this.getAllTasks();
@@ -21,6 +21,7 @@ export class ImportantTasksComponent {
   getAllTasks(){
     this.httpService.getAllTasks().subscribe((result:any)=>{
       this.taskList=result.filter((x:any)=>x.important==true);
+      console.log(this.taskList)
     })
   }
   onComplete(task:any){
@@ -35,5 +36,12 @@ export class ImportantTasksComponent {
     this.httpService.updateTask(task).subscribe(()=>{
       this.getAllTasks();
     })
+  }
+
+  onDelete(id: any){
+    console.log(id)
+    this.httpService.deleteTask(id).subscribe(()=>{
+      this.getAllTasks();
+    });
   }
 }

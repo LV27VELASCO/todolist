@@ -8,7 +8,6 @@ import { TaskListComponent } from '../../task-list/task-list.component';
   standalone: true,
   imports: [PageTitleComponent,TaskListComponent],
   templateUrl: './completed-tasks.component.html',
-  styleUrl: './completed-tasks.component.scss'
 })
 export class CompletedTasksComponent {
   newTask="";
@@ -35,5 +34,12 @@ export class CompletedTasksComponent {
     this.httpService.updateTask(task).subscribe(()=>{
       this.getAllTasks();
     })
+  }
+
+  onDelete(id: any){
+    console.log(id)
+    this.httpService.deleteTask(id).subscribe(()=>{
+      this.getAllTasks();
+    });
   }
 }
